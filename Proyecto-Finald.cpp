@@ -38,10 +38,37 @@ int clientes(){
 		es<<nombre<<" "<<cedula<<" "<<telefono<<" "<<direccion<<" "<<codigoempresa<<"\n";
 		es.close();
 	}
+		
+	void VerCliente(ifstream &Lec){
+		string nombre;
+		string cedula;
+		string telefono;
+		string direccion;
+		int codigoempresa;
+		Lec.open("Clientes.txt", ios::in);
+		Lec>>nombre;
+		while(!Lec.eof()){
+			Lec>>cedula;
+			Lec>>telefono;
+			Lec>>direccion;
+			Lec>>codigoempresa;
+			
+			cout<<"Nombre---:"<<nombre<<endl;
+			cout<<"Cedula---:"<<cedula<<endl;
+			cout<<"Telefono---:"<<telefono<<endl;
+			cout<<"Direccion---:"<<direccion<<endl;
+			cout<<"Codigo Empresa---:"<<codigoempresa<<endl;
+			cout<<"--------------------------"<<endl;
+			Lec>>nombre;
+		}
+		Lec.close();
+		system("pause");
+	}
 
 int main(int argc, char *argv[]) {
 	int opc;
 	ofstream Esc;
+	ifstream Lec;
 	cout<<"BIENVENIDO FILM MAGIC"<<endl;
 	cout<<"-------MENU-------"<<endl;
 	cout<<"1. Clientes"<<endl;
@@ -61,6 +88,8 @@ int main(int argc, char *argv[]) {
 			switch(op){
 				case 1: 
 					agregar(Esc);
+			case 2:
+				VerCliente(Lec);
 				break;
 			}
 		} while(op !=3);
